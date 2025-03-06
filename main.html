@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Neuronal con Entrenamiento Automático</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 10px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 1.5em;
+            color: #00ccff;
+            margin: 10px 0;
+        }
+        h3 {
+            font-size: 1em;
+            color: #00ccff;
+            margin: 5px 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+        }
+        .input-section, .button-section, .output-section {
+            margin: 5px 0;
+        }
+        input, button {
+            background-color: #333333;
+            color: #ffffff;
+            border: 1px solid #555555;
+            padding: 3px;
+            margin: 2px;
+            font-size: 0.9em;
+        }
+        input {
+            width: 60px;
+        }
+        button {
+            padding: 5px 10px;
+        }
+        button:hover {
+            background-color: #555555;
+        }
+        p {
+            margin: 2px 0;
+            font-size: 0.9em;
+        }
+        #canvasContainer {
+            margin-top: 10px;
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+        canvas {
+            background-color: #222222;
+            border: 1px solid #444444;
+            width: 300px;
+            height: 300px;
+        }
+        #topData, #bottomData, #leftData, #rightData {
+            position: absolute;
+            color: #ffffff;
+            font-size: 0.8em;
+        }
+        #topData {
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #bottomData {
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #leftData {
+            left: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        #rightData {
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Red Neuronal (Entrenamiento Automático)</h1>
+        <div class="input-section">
+            <h3>Entrada Automática</h3>
+            <input type="number" id="input1" step="0.1" value="0" readonly>
+            <input type="number" id="input2" step="0.1" value="0" readonly>
+        </div>
+        <div class="button-section">
+            <button onclick="toggleAuto()">Pausar/Reanudar</button>
+        </div>
+        <div class="output-section">
+            <h3>Salida</h3>
+            <p id="output">Resultado: -</p>
+            <p id="error">Error promedio: -</p>
+            <p id="trainingStatus">Entrenamiento: Activo</p>
+        </div>
+        <div id="canvasContainer">
+            <h3>Plano Cartesiano</h3>
+            <p id="topData">Arriba: -</p>
+            <p id="leftData">Izquierda: -</p>
+            <canvas id="dataCanvas" width="300" height="300"></canvas>
+            <p id="rightData">Derecha: -</p>
+            <p id="bottomData">Abajo: -</p>
+        </div>
+    </div>
+
+    <script src="neuralNetwork.js"></script>
+</body>
+</html>
